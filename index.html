@@ -4,11 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BTS Concert Review Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #ff4757;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d6394a;
+        }
+        .review-list {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the BTS Concert Review Application</h1>
-    <p>Share your thoughts about the latest BTS concert!</p>
-    <p>Admin password: 200695Dh@@</p>
-    <!-- Application code goes here -->
+    <h1>BTS Concert Review Application</h1>
+    <form id="reviewForm">
+        <input type="password" id="adminPassword" placeholder="Admin Password" required />
+        <textarea id="reviewInput" placeholder="Write your concert review here..." required></textarea>
+        <button type="submit">Submit Review</button>
+    </form>
+    <div class="review-list" id="reviewList"></div>
+    <script>
+        const form = document.getElementById('reviewForm');
+        const reviewInput = document.getElementById('reviewInput');
+        const reviewList = document.getElementById('reviewList');
+        const adminPassword = "200695Dh@@";
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (document.getElementById('adminPassword').value !== adminPassword) {
+                alert('Incorrect admin password!');
+                return;
+            }
+            const reviewText = reviewInput.value;
+            const reviewItem = document.createElement('div');
+            reviewItem.textContent = reviewText;
+            reviewList.appendChild(reviewItem);
+            reviewInput.value = '';
+        });
+    </script>
 </body>
 </html>
